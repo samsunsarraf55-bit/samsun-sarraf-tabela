@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<title>Samsun Sarraf® — Canlı Tabela</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070f;--gold:#c9a068;--gold-b:#ffd700;--gold-s:#e8c87a;--text:#f1f5f9;--muted:#64748b;--green:#22c55e;--red:#ef4444;--orange:#f59e0b}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}
+body{min-height:100dvh;padding:10px;display:flex;flex-direction:column;gap:10px;background:radial-gradient(ellipse 90% 40% at 50% -10%,rgba(201,160,104,.08),transparent 60%),var(--bg)}
+.header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;background:linear-gradient(180deg,#0d1424,#080c16);border:1px solid rgba(201,160,104,.22);border-radius:14px;padding:8px 14px}
+.header-left{display:flex;gap:6px}
+.icon-btn{height:34px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);color:var(--muted);padding:0 12px;font-size:12px;font-weight:700;cursor:pointer}
+.icon-btn.active{background:rgba(201,160,104,.15);border-color:var(--gold);color:var(--gold)}
+.logo{text-align:center;cursor:pointer;user-select:none;min-height:48px}
+.logo-mark{font-size:10px;letter-spacing:.3em;color:var(--gold);font-weight:600}
+.logo-name{font-size:22px;font-weight:700;color:var(--gold-s);font-family:'Space Grotesk',sans-serif}
+.header-right{text-align:right}
+.clock{font-size:20px;font-weight:700;font-family:'Space Grotesk',sans-serif}
+.date{font-size:10px;color:var(--muted);font-weight:600}
+.main{display:grid;grid-template-columns:1.55fr 1fr;gap:10px}
+.card{background:linear-gradient(165deg,#0c1220,#080c16);border:1px solid rgba(201,160,104,.35);border-radius:16px;position:relative;overflow:hidden}
+.card-24{padding:18px 22px;min-height:230px;display:flex;flex-direction:column}
+.badge{display:inline-flex;background:linear-gradient(90deg,#c9a068,#e8c87a);color:#0a0f1c;font-weight:800;font-size:12px;padding:5px 14px;border-radius:18px}
+.badge-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.watermark{position:absolute;right:16px;top:50%;transform:translateY(-55%);font-size:100px;font-weight:900;color:rgba(255,255,255,.03);font-family:'Space Grotesk',sans-serif;pointer-events:none}
+.prices-24{display:grid;grid-template-columns:1fr 1.15fr;gap:8px;margin-top:auto;position:relative;z-index:1}
+.price-block label{display:block;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.price-block .val{font-family:'Space Grotesk',sans-serif;font-weight:700}
+.val.alis{font-size:clamp(28px,4.2vw,48px);color:#e2e8f0;line-height:1.05}
+.val.satis{font-size:clamp(34px,5.2vw,56px);color:var(--gold-b);text-shadow:0 0 24px rgba(255,215,0,.22);line-height:1.05}
+.silver-row{display:flex;align-items:center;gap:10px;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);font-size:13px;color:var(--muted);flex-wrap:wrap}
+.silver-row strong{font-size:14px;color:var(--text);font-family:'Space Grotesk',sans-serif}
+.s-satis{color:var(--gold)!important}
+.card-22{padding:18px;display:flex;flex-direction:column;align-items:center;min-height:230px}
+.card-22 .p22{text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;width:100%}
+.card-22 label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.card-22 .alis{font-size:clamp(26px,3.6vw,40px);font-weight:700;color:#e2e8f0;font-family:'Space Grotesk',sans-serif;margin:4px 0 12px}
+.card-22 .divider{height:1px;background:rgba(255,255,255,.08);margin:0 18% 8px}
+.card-22 .satis-label{font-size:10px;font-weight:700;color:var(--orange)}
+.card-22 .satis{font-size:clamp(30px,4.4vw,48px);font-weight:700;color:var(--gold-b);font-family:'Space Grotesk',sans-serif}
+.products{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.prod{background:linear-gradient(165deg,#0c1220,#080c16);border:1px solid rgba(201,160,104,.28);border-radius:14px;padding:14px 10px 16px;text-align:center;min-height:130px;display:flex;flex-direction:column;justify-content:center}
+.prod-name{font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.06em;margin-bottom:12px}
+.prod label{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.prod .alis{font-size:clamp(16px,2.2vw,22px);font-weight:700;color:#e2e8f0;font-family:'Space Grotesk',sans-serif;margin-bottom:10px}
+.prod .divider{height:1px;background:rgba(255,255,255,.07);margin:0 10% 8px}
+.prod .satis-label{font-size:10px;font-weight:700;color:var(--orange)}
+.prod .satis{font-size:clamp(18px,2.5vw,24px);font-weight:700;color:var(--gold-b);font-family:'Space Grotesk',sans-serif}
+.footer{margin-top:auto;background:linear-gradient(90deg,#0a0e18,#0d1424);border:1px solid rgba(201,160,104,.2);border-radius:10px;padding:8px 12px;display:flex;align-items:center;gap:10px;overflow:hidden}
+.duyuru-badge{flex-shrink:0;background:linear-gradient(90deg,#c9a068,#a07840);color:#0a0f1c;font-size:9px;font-weight:800;padding:4px 10px;border-radius:6px}
+.ticker-wrap{flex:1;overflow:hidden}
+.ticker{display:flex;gap:36px;white-space:nowrap;animation:scroll 40s linear infinite;font-size:11px;color:#cbd5e1}
+.ticker b{color:var(--gold-s)}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 8px rgba(34,197,94,.6)}
+.status-dot.off{background:var(--red)}
+.admin-overlay{display:none;position:fixed;inset:0;z-index:200;background:#05070f;overflow-y:auto;padding:12px}
+.admin-overlay.open{display:block}
+.admin-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:12px;padding:12px 14px;background:#0a0f1c;border:1px solid rgba(201,160,104,.2);border-radius:14px}
+.admin-top h1{font-size:16px}
+.btn-sm{padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--text);font-size:11px;font-weight:600;cursor:pointer}
+.btn-close{width:36px;height:36px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:var(--muted);cursor:pointer;font-size:16px}
+.admin-card{background:#0a0f1c;border:1px solid rgba(201,160,104,.18);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.admin-card .title{font-size:13px;font-weight:700}
+.m-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.m-card{background:#080c16;border:1px solid rgba(201,160,104,.3);border-radius:12px;padding:12px}
+.m-name{font-size:13px;font-weight:800;margin-bottom:8px}
+.m-ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.m-ctrl button{width:28px;height:28px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:var(--text);font-weight:700;cursor:pointer}
+.m-ctrl .val{min-width:48px;text-align:center;font-size:12px;font-weight:700}
+.pw-modal{display:none;position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.82);align-items:center;justify-content:center;padding:20px}
+.pw-modal.open{display:flex}
+.pw-box{background:#0d1424;border:1px solid rgba(201,160,104,.35);border-radius:16px;padding:24px;width:100%;max-width:360px}
+.pw-box h2{font-size:16px;color:var(--gold);margin-bottom:6px}
+.pw-box input{width:100%;background:#080c16;border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--text);padding:12px 14px;font-size:15px;margin:10px 0}
+.pw-actions{display:flex;gap:8px;justify-content:flex-end}
+.pw-actions button{padding:10px 16px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
+.pw-ok{background:linear-gradient(90deg,#c9a068,#e8c87a);color:#0a0f1c}
+.pw-cancel{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,.12)!important}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#0d1424;border:1px solid var(--gold);color:var(--gold-s);padding:10px 18px;border-radius:12px;font-size:13px;font-weight:600;z-index:300;opacity:0;transition:.25s}
+.toast.show{opacity:1}
+@media(max-width:900px){.main{grid-template-columns:1fr}.products{grid-template-columns:repeat(3,1fr)}.m-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.products{grid-template-columns:repeat(2,1fr)}.header{padding:6px 8px}.clock{font-size:15px}}
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="header-left">
+    <button class="icon-btn" id="btnRefresh">↻</button>
+    <button class="icon-btn active" id="liveBadge">CANLI</button>
+  </div>
+  <div class="logo" id="logoTap">
+    <div class="logo-mark">SAMSUN</div>
+    <div class="logo-name">Sarraf®</div>
+  </div>
+  <div class="header-right">
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="date" id="date">—</div>
+  </div>
+</header>
+<section class="main">
+  <div class="card card-24">
+    <div class="watermark">24K</div>
+    <div class="badge-row"><span class="badge">24 AYAR HAS</span></div>
+    <div class="prices-24">
+      <div class="price-block"><label>Alış Fiyatı</label><div class="val alis" id="p24a">—</div></div>
+      <div class="price-block" style="text-align:right"><label style="text-align:right">Satış Fiyatı</label><div class="val satis" id="p24s">—</div></div>
+    </div>
+    <div class="silver-row">
+      <span>HAS GÜMÜŞ (XAG)</span>
+      <span style="margin-left:auto">ALIŞ: <strong id="agA">—</strong> &nbsp; SATIŞ: <strong class="s-satis" id="agS">—</strong></span>
+    </div>
+  </div>
+  <div class="card card-22">
+    <span class="badge">22 AYAR</span>
+    <div class="p22">
+      <label>Alış</label><div class="alis" id="p22a">—</div>
+      <div class="divider"></div>
+      <div class="satis-label">SATIŞ ●</div><div class="satis" id="p22s">—</div>
+    </div>
+  </div>
+</section>
+<section class="products">
+  <div class="prod"><div class="prod-name">AU</div><label>Alış</label><div class="alis" id="pauA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pauS">—</div></div>
+  <div class="prod"><div class="prod-name">ÇEYREK</div><label>Alış</label><div class="alis" id="pcA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pcS">—</div></div>
+  <div class="prod"><div class="prod-name">YARIM</div><label>Alış</label><div class="alis" id="pyA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pyS">—</div></div>
+  <div class="prod"><div class="prod-name">ZİYNET LİRA</div><label>Alış</label><div class="alis" id="pzA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pzS">—</div></div>
+  <div class="prod"><div class="prod-name">ATA LİRA</div><label>Alış</label><div class="alis" id="patA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="patS">—</div></div>
+</section>
+<footer class="footer">
+  <span class="duyuru-badge">DUYURU</span>
+  <div class="ticker-wrap"><div class="ticker">
+    <span>KIYMETLİ MADEN YATIRIMLARINIZDA BİZİ TERCİH ETTİĞİNİZ İÇİN TEŞEKKÜR EDERİZ.</span>
+    <span>PİYASALAR: <b>ALTIN ONS:</b> <span id="xauOns">—</span> $ | <b>GÜMÜŞ ONS:</b> <span id="xagOns">—</span> $</span>
+    <span>KIYMETLİ MADEN YATIRIMLARINIZDA BİZİ TERCİH ETTİĞİNİZ İÇİN TEŞEKKÜR EDERİZ.</span>
+    <span>PİYASALAR: <b>ALTIN ONS:</b> <span id="xauOns2">—</span> $ | <b>GÜMÜŞ ONS:</b> <span id="xagOns2">—</span> $</span>
+  </div></div>
+  <span class="status-dot" id="dot"></span>
+</footer>
+<div class="admin-overlay" id="admin">
+  <div class="admin-top">
+    <div><h1>⚙ Yönetici Marj Paneli</h1></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-sm" id="adminRefresh">↻ Güncelle</button>
+      <button class="btn-close" id="btnCloseAdmin">✕</button>
+    </div>
+  </div>
+  <div class="admin-card">
+    <div class="title">Makas (Spread) — anlık tabela güncellemesi</div>
+    <div class="m-grid" id="marginCards"></div>
+  </div>
+  <div class="admin-card">
+    <div class="title">Şifre</div>
+    <p style="font-size:12px;color:var(--muted);margin:8px 0">Varsayılan: sarraf55</p>
+  </div>
+</div>
+<div class="pw-modal" id="pwModal">
+  <div class="pw-box">
+    <h2>🔒 Yönetici Girişi</h2>
+    <input type="password" id="pwInput" placeholder="Şifre"/>
+    <div id="pwErr" style="color:var(--red);font-size:12px;min-height:18px"></div>
+    <div class="pw-actions">
+      <button type="button" class="pw-cancel" id="pwCancelBtn">İptal</button>
+      <button type="button" class="pw-ok" id="pwSubmitBtn">Giriş</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+const GUNES='https://api.guneskuyumculuk.net/temp-server/merkez/data';
+const AHLATCI='https://www.ahlatcidoviz.com.tr/kr.aspx';
+const MARGIN_KEY='ss_margins_v3';
+const DEFAULT_PW='sarraf55';
+const PRODUCTS=[
+  {id:'24',name:'24 AYAR HAS',short:'24K',coin:false,rawA:'a24',rawS:'s24'},
+  {id:'22',name:'22 AYAR',short:'22K',coin:false,rawA:'a22',rawS:'s22'},
+  {id:'c',name:'CEYREK',short:'CY',coin:true,rawA:'aC',rawS:'sC'},
+  {id:'y',name:'YARIM',short:'YM',coin:true,rawA:'aY',rawS:'sY'},
+  {id:'z',name:'ZIYNET',short:'ZN',coin:true,rawA:'aZ',rawS:'sZ'},
+  {id:'at',name:'ATA LIRA',short:'AT',coin:true,rawA:'aAt',rawS:'sAt'},
+  {id:'au',name:'AU',short:'AU',coin:false,rawA:'aAu',rawS:'sAu'},
+  {id:'ag',name:'GUMUS KG',short:'GM',coin:false,rawA:'agA',rawS:'agS'}
+];
+function roundHalf(v){if(isNaN(v)||v<=0)return v;const i=Math.floor(v);const d=Number((v-i).toFixed(6));return d<0.5?i:i+1}
+function fmt(v,coin){const n=Number(v);if(!isFinite(n)||n<=0)return'—';if(coin)return roundHalf(n).toLocaleString('tr-TR');return roundHalf(n).toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function loadMargins(){try{const s=localStorage.getItem(MARGIN_KEY);if(s)return Object.assign({},JSON.parse(s))}catch(e){}const m={};PRODUCTS.forEach(p=>m[p.id]={a:0,s:0});return m}
+function saveMargins(){try{localStorage.setItem(MARGIN_KEY,JSON.stringify(margins))}catch(e){}}
+let margins=loadMargins(),lastRaw={},busy=false,timer=null,logoClicks=0,logoTimer=null;
+function proxyList(url){return['https://api.allorigins.win/raw?url='+encodeURIComponent(url)+'&t='+Date.now(),'https://corsproxy.io/?'+encodeURIComponent(url),url]}
+async function fetchText(url){const c=new AbortController();const t=setTimeout(()=>c.abort(),10000);try{const r=await fetch(url,{cache:'no-store',signal:c.signal});clearTimeout(t);if(!r.ok)throw new Error();return await r.text()}catch(e){clearTimeout(t);throw e}}
+function parseGunes(data){try{const d=typeof data==='string'?JSON.parse(data):data;const u=d.urunler||{},h=d.hesaplamaTemeli||{};const raw={a24:+u.ayar_24k?.alis||0,s24:+u.ayar_24k?.satis||0,a22:+u.ayar_22k?.alis||0,s22:+u.ayar_22k?.satis||0,aAu:+h.baseAlis||+h.xauAlis||0,sAu:+h.baseSatis||+h.xauSatis||0,aC:+u.ceyrek?.alis||0,sC:+u.ceyrek?.satis||0,aY:+u.yarim?.alis||0,sY:+u.yarim?.satis||0,aZ:+u.ziynet?.alis||0,sZ:+u.ziynet?.satis||0,aAt:+u.ata_lira?.alis||0,sAt:+u.ata_lira?.satis||0,agA:0,agS:0};if(!raw.aAu&&raw.a24){raw.aAu=raw.a24;raw.sAu=raw.s24}return(raw.a24||raw.aAu)?raw:null}catch(e){return null}}
+function parseAhlatci(html){try{const doc=new DOMParser().parseFromString(html,'text/html');const map={};doc.querySelectorAll('table tbody tr').forEach(tr=>{const th=tr.querySelector('th');const td=tr.querySelectorAll('td');if(!th||td.length<2)return;const s=th.textContent.trim();const al=parseFloat(td[0].textContent.trim().replace(',','.'));const st=parseFloat(td[1].textContent.trim().replace(',','.'));if(s&&!isNaN(al))map[s]={alis:al,satis:isNaN(st)?al:st}});const x=map['XAU']||map['HAS']||map['GA']||null;const g=map['XAG']||map['Gümüş']||map['GUMUS']||{};if(!x&&!g.alis)return null;return{a24:x?x.alis:0,s24:x?x.satis:0,a22:x?x.alis*0.916:0,s22:x?x.satis*0.916:0,aAu:x?x.alis:0,sAu:x?x.satis:0,aC:0,sC:0,aY:0,sY:0,aZ:0,sZ:0,aAt:0,sAt:0,agA:g.alis||0,agS:g.satis||0}}catch(e){return null}}
+function applyToUI(){const raw=lastRaw||{};PRODUCTS.forEach(p=>{const baseA=raw[p.rawA]||0,baseS=raw[p.rawS]||0;const a=baseA+(margins[p.id]?.a||0),s=baseS+(margins[p.id]?.s||0);const map={24:['p24a','p24s'],22:['p22a','p22s'],au:['pauA','pauS'],c:['pcA','pcS'],y:['pyA','pyS'],z:['pzA','pzS'],at:['patA','patS']};if(p.id==='ag'){const elA=document.getElementById('agA'),elS=document.getElementById('agS');if(elA)elA.textContent=fmt(a,false)+' TL';if(elS)elS.textContent=fmt(s,false)+' TL'}else if(map[p.id]){const e1=document.getElementById(map[p.id][0]),e2=document.getElementById(map[p.id][1]);if(e1)e1.textContent=fmt(a,p.coin);if(e2)e2.textContent=fmt(s,p.coin)}});if(document.getElementById('admin')?.classList.contains('open'))renderMarginCards()}
+async function load(){if(busy)return;busy=true;let g=null,a=null;for(const url of proxyList(GUNES)){try{let t=await fetchText(url);try{const j=JSON.parse(t);t=j.contents!=null?j.contents:j}catch(_){}g=parseGunes(t);if(g)break}catch(e){}}for(const url of proxyList(AHLATCI).slice(0,2)){try{const t=await fetchText(url);a=parseAhlatci(t);if(a)break}catch(e){}}if(g||a){lastRaw={};PRODUCTS.forEach(p=>{if(p.id==='ag'){lastRaw.agA=(a&&a.agA)||(g&&g.agA)||76;lastRaw.agS=(a&&a.agS)||(g&&g.agS)||84}else{lastRaw[p.rawA]=(g&&g[p.rawA])||(a&&a[p.rawA])||0;lastRaw[p.rawS]=(g&&g[p.rawS])||(a&&a[p.rawS])||0}});applyToUI();document.getElementById('liveBadge').textContent='CANLI';document.getElementById('dot').className='status-dot'}else{document.getElementById('liveBadge').textContent='OFF';document.getElementById('dot').className='status-dot off'}fetchOns();clearTimeout(timer);timer=setTimeout(load,8000);busy=false}
+async function fetchOns(){for(const [k,p] of[['xau','XAU'],['xag','XAG']]){for(const url of proxyList('https://api.gold-api.com/price/'+p)){try{let t=await fetchText(url);try{const j=JSON.parse(t);t=j.contents!=null?(typeof j.contents==='string'?JSON.parse(j.contents):j.contents):j}catch(_){continue}const price=Number(t.price||t.ask);if(price>0){const x=price.toFixed(2);['','2'].forEach(s=>{const el=document.getElementById(k+'Ons'+s);if(el)el.textContent=x});break}}catch(e){}}}}
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function tick(){const n=new Date();document.getElementById('clock').textContent=n.toLocaleTimeString('tr-TR');const days=['PAZAR','PAZARTESI','SALI','CARSAMBA','PERSEMBE','CUMA','CUMARTESI'];const months=['OCAK','SUBAT','MART','NISAN','MAYIS','HAZIRAN','TEMMUZ','AGUSTOS','EYLUL','EKIM','KASIM','ARALIK'];document.getElementById('date').textContent=String(n.getDate()).padStart(2,'0')+' '+months[n.getMonth()]+' '+n.getFullYear()+' '+days[n.getDay()]}
+function adjMargin(id,f,d){margins[id]=margins[id]||{a:0,s:0};margins[id][f]=Math.round((margins[id][f]+d)*100)/100;saveMargins();applyToUI();renderMarginCards()}
+function renderMarginCards(){const el=document.getElementById('marginCards');if(!el)return;el.innerHTML=PRODUCTS.map(p=>{const ma=margins[p.id]?.a||0,ms=margins[p.id]?.s||0;return'<div class="m-card"><div class="m-name">'+p.name+'</div><div class="m-ctrl"><span>AL</span><button type="button" data-a="'+p.id+',a,-1">−</button><span class="val">'+(ma>=0?'+':'')+ma+'</span><button type="button" data-a="'+p.id+',a,1">+</button><span>SAT</span><button type="button" data-a="'+p.id+',s,-1">−</button><span class="val">'+(ms>=0?'+':'')+ms+'</span><button type="button" data-a="'+p.id+',s,1">+</button></div></div>'}).join('');el.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{const p=b.getAttribute('data-a').split(',');adjMargin(p[0],p[1],Number(p[2]))})}
+function openAdmin(){document.getElementById('admin').classList.add('open');renderMarginCards();toast('Yonetici paneli acildi')}
+function closeAdmin(){document.getElementById('admin').classList.remove('open')}
+function openPw(){document.getElementById('pwModal').classList.add('open');document.getElementById('pwInput').value='';document.getElementById('pwInput').focus()}
+function submitPw(){const v=(document.getElementById('pwInput').value||'').trim();if(v===DEFAULT_PW||v===(localStorage.getItem('ss_admin_pw_v1')||DEFAULT_PW)){document.getElementById('pwModal').classList.remove('open');openAdmin()}else{document.getElementById('pwErr').textContent='Hatali sifre'}}
+document.getElementById('logoTap').onclick=()=>{logoClicks++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>logoClicks=0,2000);if(logoClicks>=5){logoClicks=0;openPw()}else if(logoClicks>=2)toast('Yonetici: '+(5-logoClicks)+' dokunus daha')};
+document.getElementById('pwSubmitBtn').onclick=submitPw;
+document.getElementById('pwCancelBtn').onclick=()=>document.getElementById('pwModal').classList.remove('open');
+document.getElementById('pwInput').onkeydown=e=>{if(e.key==='Enter')submitPw()};
+document.getElementById('btnCloseAdmin').onclick=closeAdmin;
+document.getElementById('btnRefresh').onclick=()=>load();
+document.getElementById('adminRefresh').onclick=()=>load();
+tick();setInterval(tick,1000);load();
+})();
+</script>
+</body>
+</html>
