@@ -145,6 +145,19 @@ body {
 .admin-tab.active { background: rgba(201,160,104,.15); border-color: var(--gold); color: var(--gold); }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
+.tick-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.tick-row label { display: flex; align-items: center; gap: 8px; }
+#tickLines {
+  width: 100%; min-height: 96px; resize: vertical; margin-top: 4px;
+  background: #070b14; border: 1px solid rgba(255,255,255,.1); border-radius: 10px;
+  color: var(--text); padding: 10px 12px; font-family: inherit; font-size: 13px;
+}
+.hist-wrap { overflow: auto; margin-top: 10px; max-height: 60vh; }
+.hist-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.hist-table th, .hist-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,.06); white-space: nowrap; }
+.hist-table th { color: var(--muted); font-size: 10px; letter-spacing: .06em; }
+.hist-table td.buy { color: #4ade80; font-weight: 700; }
+.hist-table td.sell { color: #fbbf24; font-weight: 700; }
 
 .admin-card {
   background: #0a0f1c; border: 1px solid rgba(201,160,104,.18);
@@ -166,6 +179,150 @@ body {
   cursor: pointer; font-family: inherit;
 }
 .row-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+.bulk-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  background: #0a0f1c; border: 1px solid rgba(201,160,104,.22); border-radius: 14px;
+  padding: 12px 14px; margin-bottom: 10px;
+}
+.bulk-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-bulk {
+  border-radius: 10px; padding: 8px 12px; font-size: 11px; font-weight: 800;
+  cursor: pointer; font-family: inherit; letter-spacing: .02em;
+}
+.btn-bulk.buy { background: rgba(244,63,94,.12); color: #fb7185; border: 1px solid rgba(244,63,94,.45); }
+.btn-bulk.sell { background: rgba(249,115,22,.12); color: #fdba74; border: 1px solid rgba(249,115,22,.45); }
+.btn-bulk.all { background: rgba(201,160,104,.16); color: #e8c87a; border: 1px solid rgba(201,160,104,.5); }
+.m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.m-card {
+  background: #080c16; border: 1px solid rgba(201,160,104,.45); border-radius: 14px; padding: 10px 12px;
+}
+.m-card .m-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.m-card .m-id { display: flex; gap: 8px; align-items: center; min-width: 0; }
+.m-card .m-badge {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  background: linear-gradient(135deg, #c9a068, #8a6230); color: #1a1208;
+  font-size: 11px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+}
+.m-card .m-name { font-size: 14px; font-weight: 800; letter-spacing: .02em; }
+.m-card .m-kanal { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.m-pills { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+.m-pill {
+  font-size: 9px; font-weight: 800; letter-spacing: .04em; padding: 2px 6px; border-radius: 6px;
+  border: 1px solid rgba(59,130,246,.45); color: #93c5fd; background: rgba(59,130,246,.12);
+}
+.m-pill.warn { border-color: rgba(234,179,8,.5); color: #fde68a; background: rgba(234,179,8,.1); }
+.m-tools { display: flex; gap: 6px; }
+.m-tools button {
+  width: 30px; height: 30px; border-radius: 8px; border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.04); color: #cbd5e1; cursor: pointer; font-size: 14px;
+}
+.m-tools button.on { color: var(--gold-bright); border-color: rgba(201,160,104,.5); }
+.m-prices {
+  display: grid; grid-template-columns: 1fr 1fr; margin: 8px 0 6px;
+  background: #05070f; border-radius: 10px; overflow: hidden;
+}
+.m-prices > div { padding: 8px 10px; }
+.m-prices > div + div { border-left: 1px solid rgba(255,255,255,.06); }
+.m-prices label { display: block; font-size: 9px; font-weight: 700; color: var(--muted); letter-spacing: .08em; }
+.m-prices .pa { color: #4ade80; font-weight: 800; font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.m-prices .ps { color: #fbbf24; font-weight: 800; font-family: 'Space Grotesk', sans-serif; font-size: 16px; }
+.m-ctrl { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding-top: 4px; }
+.m-ctrl .side { display: flex; align-items: center; gap: 4px; }
+.m-ctrl .lbl { font-size: 11px; color: var(--muted); font-weight: 700; }
+.m-ctrl button {
+  min-width: 26px; height: 26px; border-radius: 7px; border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05); color: var(--text); font-weight: 700; cursor: pointer; font-family: inherit;
+}
+.m-ctrl .val { min-width: 52px; text-align: center; font-size: 12px; font-weight: 800; }
+.m-ctrl .val.pos { color: #4ade80; }
+.m-ctrl .val.neg { color: #fb7185; }
+[data-board].is-hidden { display: none !important; }
+
+.formula-modal {
+  display: none; position: fixed; inset: 0; z-index: 280;
+  background: rgba(0,0,0,.72); align-items: flex-start; justify-content: center;
+  padding: 24px 12px; overflow: auto;
+}
+.formula-modal.open { display: flex; }
+.formula-box {
+  width: min(720px, 100%); background: #0b1220; border: 1px solid rgba(201,160,104,.28);
+  border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,.55);
+}
+.formula-head, .formula-foot { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+.formula-head { border-bottom: 1px solid rgba(255,255,255,.06); }
+.formula-foot { border-top: 1px solid rgba(255,255,255,.06); justify-content: flex-end; }
+.formula-title { font-weight: 800; font-size: 16px; }
+.formula-body { padding: 14px 16px 8px; }
+.fm-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .06em; margin: 10px 0 6px; }
+.fm-name {
+  width: 100%; background: #070b14; border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
+  color: var(--text); padding: 12px 14px; font-size: 15px; font-weight: 700; font-family: inherit;
+}
+.fm-kanal {
+  display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px; overflow: hidden; margin-top: 8px;
+}
+.fm-kanal > div { padding: 12px; text-align: center; }
+.fm-kanal > div + div { border-left: 1px solid rgba(255,255,255,.06); }
+.fm-kanal b { display: block; margin-top: 4px; font-size: 18px; font-family: 'Space Grotesk', sans-serif; }
+.fm-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.fm-plan { background: #070b14; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 12px; }
+.fm-plan h4 { font-size: 13px; margin-bottom: 2px; }
+.fm-plan .net { float: right; text-align: right; font-size: 11px; color: var(--muted); }
+.fm-plan .net b { display: block; font-size: 16px; font-family: 'Space Grotesk', sans-serif; }
+.fm-plan .net b.buy { color: #4ade80; }
+.fm-plan .net b.sell { color: #fbbf24; }
+.seg { display: flex; gap: 6px; margin: 10px 0; }
+.seg button {
+  flex: 1; border-radius: 8px; padding: 8px 6px; font-size: 11px; font-weight: 800; cursor: pointer;
+  border: 1px solid rgba(255,255,255,.1); background: transparent; color: var(--muted); font-family: inherit;
+}
+.seg button.on { background: linear-gradient(90deg,#c9a068,#e8c87a); color: #1a1208; border-color: transparent; }
+.stepper { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.stepper button, .stepper input {
+  height: 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,.12);
+  background: #0b1220; color: var(--text); font-weight: 700; font-family: inherit;
+}
+.stepper button { min-width: 42px; cursor: pointer; }
+.stepper input { width: 72px; text-align: center; font-size: 16px; }
+.fm-hint { font-size: 11px; color: var(--muted); margin: 6px 0; }
+.rounds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.rounds.silver { grid-template-columns: repeat(4, 1fr); }
+.round-opt {
+  background: #070b14; border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
+  padding: 8px 6px; text-align: center; cursor: pointer; color: var(--text); font-family: inherit;
+}
+.round-opt.on { border-color: #e8c87a; box-shadow: inset 0 0 0 1px #e8c87a; }
+.round-opt .rt { font-size: 10px; font-weight: 800; letter-spacing: .03em; }
+.round-opt .rd { font-size: 9px; color: var(--muted); margin: 2px 0 6px; }
+.round-opt .rp { font-size: 13px; font-weight: 800; font-family: 'Space Grotesk', sans-serif; }
+.round-box { margin-top: 12px; border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 12px; }
+.round-box .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.pill-on { background: #166534; color: #bbf7d0; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 8px; }
+@media (max-width: 800px) {
+  .fm-plans, .fm-kanal, .rounds, .rounds.silver { grid-template-columns: 1fr 1fr; }
+  .m-grid { grid-template-columns: 1fr; }
+  .bulk-bar { align-items: stretch; }
+}
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr; }
+  .products { grid-template-columns: repeat(2, 1fr); }
+  .card-24, .card-22 { min-height: 0; }
+  .silver-row { justify-content: space-between; }
+}
+@media (max-width: 560px) {
+  body { padding: 6px; gap: 6px; }
+  .header { padding: 6px 8px; gap: 6px; }
+  .clock { font-size: 16px; }
+  .products { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .prod { min-height: 108px; padding: 10px 6px; }
+  .prices-24 { gap: 4px; }
+  .footer { padding: 6px 8px; }
+  .ticker { font-size: 10px; }
+  .admin-overlay { padding: 8px; }
+}
+
 
 .m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
 .m-card { background: #080c16; border: 1px solid rgba(201,160,104,.3); border-radius: 12px; padding: 12px; }
@@ -343,37 +500,152 @@ body {
 }
 .toast.show { opacity: 1; }
 
-/* MOBILE */
+/* MOBILE — telefon tabela */
 @media (max-width: 900px) {
   .main { grid-template-columns: 1fr; }
-  .products { grid-template-columns: repeat(3, 1fr); }
-  .price-block .val.alis { font-size: 28px; }
-  .price-block .val.satis { font-size: 34px; }
+  .products { grid-template-columns: repeat(2, 1fr); }
   .m-grid { grid-template-columns: 1fr; }
-  .watermark { font-size: 72px; }
+  .watermark { font-size: 64px; }
 }
-@media (max-width: 560px) {
-  body { padding: 6px; gap: 6px; }
-  .header { grid-template-columns: auto 1fr auto; padding: 6px 8px; }
-  .header-left .icon-btn:not(.active) { display: none; }
-  .logo img { height: 36px; }
-  .logo-name { font-size: 18px; }
-  .clock { font-size: 15px; }
-  .date { font-size: 9px; }
-  .products { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .card-24, .card-22 { min-height: 160px; padding: 12px; }
-  .price-block .val.alis { font-size: 24px; }
-  .price-block .val.satis { font-size: 28px; }
-  .card-22 .p22 .alis { font-size: 24px; }
-  .card-22 .p22 .satis { font-size: 28px; }
-  .prod .alis { font-size: 15px; }
-  .prod .satis { font-size: 16px; }
-  .prod-name { font-size: 10px; }
+@media (max-width: 720px) {
+  html, body {
+    height: auto;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  body { padding: 8px; gap: 8px; }
+  .header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 6px 8px;
+    border-radius: 12px;
+    gap: 4px;
+  }
+  .header-left { gap: 4px; }
+  .icon-btn { width: 32px; height: 32px; }
+  .icon-btn.active { font-size: 10px; padding: 0 8px; height: 32px; }
+  .logo { min-width: 0; min-height: 36px; }
+  .logo img { height: 38px; max-width: 42vw; }
+  .header-right { min-width: 0; }
+  .clock { font-size: 15px; line-height: 1.1; }
+  .date { font-size: 8px; letter-spacing: 0; max-width: 92px; line-height: 1.25; }
+  .main { gap: 8px; }
+  .card-24, .card-22 { min-height: 0; padding: 12px 12px 10px; border-radius: 14px; }
+  .badge { font-size: 11px; padding: 4px 10px; }
+  .watermark { display: none; }
+  .prices-24 { grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px; }
+  .price-block label { font-size: 9px; letter-spacing: .06em; }
+  .price-block .val.alis { font-size: clamp(22px, 7.2vw, 32px); }
+  .price-block .val.satis { font-size: clamp(24px, 8vw, 36px); }
+  .price-block:last-child, .price-block:last-child label { text-align: right; }
+  .silver-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 6px 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    font-size: 11px;
+  }
+  .silver-row > span:last-child {
+    margin-left: 0 !important;
+    text-align: right;
+    font-size: 12px;
+  }
+  .silver-row strong { font-size: 13px; }
+  .card-22 .badge { margin-bottom: 8px; }
+  .card-22 .p22 .alis { font-size: clamp(26px, 8vw, 36px); margin: 2px 0 8px; }
+  .card-22 .p22 .satis { font-size: clamp(30px, 9vw, 42px); }
+  .products { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .products .prod:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .prod { min-height: 112px; padding: 12px 8px 14px; border-radius: 12px; }
+  .prod-name { font-size: 12px; margin-bottom: 8px; }
+  .prod label, .prod .satis-label { font-size: 9px; }
+  .prod .alis { font-size: clamp(18px, 5.4vw, 24px); margin-bottom: 6px; }
+  .prod .satis { font-size: clamp(20px, 6vw, 26px); }
+  .footer { padding: 6px 8px; border-radius: 10px; gap: 6px; }
+  .duyuru-badge { font-size: 8px; padding: 3px 7px; }
+  .ticker { font-size: 11px; gap: 24px; }
+  .admin-overlay { padding: 8px; }
   .admin-top { padding: 10px; }
-  .admin-top h1 { font-size: 14px; }
+  .admin-top h1 { font-size: 15px; }
   .admin-top .email { display: none; }
-  .src-table select { max-width: 100%; }
-  .radar-frame-wrap iframe { height: 60vh; min-height: 320px; }
+  .admin-tabs { gap: 4px; }
+  .admin-tab { font-size: 11px; padding: 8px 8px; }
+  .formula-box { border-radius: 14px; }
+  .formula-body { padding: 10px 10px 4px; }
+  .fm-plans { grid-template-columns: 1fr; }
+  .rounds, .rounds.silver { grid-template-columns: 1fr 1fr; }
+  .bulk-actions { width: 100%; }
+  .btn-bulk { flex: 1; }
+}
+/* Marj + ayarlar tek ekran */
+@media (min-width: 960px) {
+  .admin-overlay.open {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    overflow: hidden;
+    padding: 8px 10px;
+  }
+  .admin-top { margin-bottom: 6px; padding: 6px 12px; flex-shrink: 0; }
+  .admin-top h1 { font-size: 15px; }
+  .admin-tabs { margin-bottom: 6px; flex-shrink: 0; }
+  .tab-panel.active { flex: 1; min-height: 0; overflow: auto; }
+  #tab-margins.active {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  #tab-margins .bulk-bar {
+    padding: 6px 10px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  #tab-margins .bulk-bar .sub { display: none; }
+  #tab-margins #adminTime { display: none; }
+  #marginCards.m-grid {
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    gap: 6px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+  }
+  #marginCards .m-card {
+    padding: 6px 8px;
+    border-radius: 10px;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  #marginCards .m-badge { width: 26px; height: 26px; font-size: 9px; border-radius: 7px; }
+  #marginCards .m-name { font-size: 12px; line-height: 1.1; }
+  #marginCards .m-kanal { font-size: 10px; }
+  #marginCards .m-pills { margin-top: 2px; }
+  #marginCards .m-tools button { width: 24px; height: 24px; font-size: 12px; }
+  #marginCards .m-prices { margin: 2px 0; }
+  #marginCards .m-prices > div { padding: 3px 8px; }
+  #marginCards .m-prices .pa,
+  #marginCards .m-prices .ps { font-size: clamp(13px, 1.5vh, 18px); }
+  #marginCards .m-ctrl { padding-top: 0; }
+  #marginCards .m-ctrl button { height: 22px; min-width: 22px; }
+  #tab-settings.active {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+    align-content: stretch;
+    overflow: hidden;
+  }
+  #tab-settings .admin-card { margin: 0; padding: 10px 12px; min-height: 0; }
+  #tab-settings .admin-card:first-child { grid-row: 1 / span 2; }
+  #tab-settings #tickLines { min-height: 72px; }
+  #tab-settings .pw-settings-box .hint { margin-bottom: 8px; }
+  #tab-settings .sub { margin-bottom: 6px; }
 }
 </style>
 </head>
@@ -385,11 +657,10 @@ body {
     <button class="icon-btn active" id="liveBadge">CANLI</button>
   </div>
   <div class="logo" id="logoTap" title="Yönetici için 5 kez dokun">
-    <img id="logoImg" src="https://i.ibb.co/gZYRVq97/effaf-PNG.png" alt="Samsun Sarraf"
-      style="display:none"
-      onload="this.style.display='block';document.getElementById('logoText').style.display='none'"
-      onerror="this.style.display='none';document.getElementById('logoText').style.display='block'">
-    <div id="logoText" class="logo-text-fallback">
+    <img id="logoImg" src="logo.png" alt="Samsun Sarraf"
+      style="display:block"
+      onerror="this.style.display='none';var t=document.getElementById('logoText');if(t)t.style.display='block'">
+    <div id="logoText" class="logo-text-fallback" style="display:none">
       <div class="logo-mark">SAMSUN</div>
       <div class="logo-name">Sarraf<span>®</span></div>
     </div>
@@ -401,23 +672,23 @@ body {
 </header>
 
 <section class="main">
-  <div class="card card-24">
+  <div class="card card-24" data-board="24">
     <div class="watermark">24K</div>
     <div class="badge-row">
-      <span class="badge">24 AYAR HAS</span>
+      <span class="badge" id="name-24">24 AYAR HAS</span>
       <span class="chg" id="chg24">—</span>
     </div>
     <div class="prices-24">
       <div class="price-block"><label>Alış Fiyatı</label><div class="val alis" id="p24a">—</div></div>
       <div class="price-block" style="text-align:right"><label style="text-align:right">Satış Fiyatı</label><div class="val satis" id="p24s">—</div></div>
     </div>
-    <div class="silver-row">
-      <span><span class="dot"></span>HAS GÜMÜŞ (XAG)</span>
+    <div class="silver-row" data-board="ag">
+      <span id="name-ag"><span class="dot"></span>HAS GÜMÜŞ (XAG)</span>
       <span style="margin-left:auto">ALIŞ: <strong id="agA">—</strong> &nbsp; SATIŞ: <strong class="s-satis" id="agS">—</strong></span>
     </div>
   </div>
-  <div class="card card-22">
-    <span class="badge">22 AYAR</span>
+  <div class="card card-22" data-board="22">
+    <span class="badge" id="name-22">22 AYAR</span>
     <div class="p22">
       <label>Alış</label><div class="alis" id="p22a">—</div>
       <div class="divider"></div>
@@ -427,11 +698,11 @@ body {
 </section>
 
 <section class="products">
-  <div class="prod"><div class="prod-name">AU</div><label>Alış</label><div class="alis" id="pauA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pauS">—</div></div>
-  <div class="prod"><div class="prod-name">ÇEYREK</div><label>Alış</label><div class="alis" id="pcA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pcS">—</div></div>
-  <div class="prod"><div class="prod-name">YARIM</div><label>Alış</label><div class="alis" id="pyA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pyS">—</div></div>
-  <div class="prod"><div class="prod-name">ZİYNET LİRA</div><label>Alış</label><div class="alis" id="pzA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pzS">—</div></div>
-  <div class="prod"><div class="prod-name">ATA LİRA</div><label>Alış</label><div class="alis" id="patA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="patS">—</div></div>
+  <div class="prod" data-board="au"><div class="prod-name" id="name-au">AU</div><label>Alış</label><div class="alis" id="pauA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pauS">—</div></div>
+  <div class="prod" data-board="c"><div class="prod-name" id="name-c">ÇEYREK</div><label>Alış</label><div class="alis" id="pcA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pcS">—</div></div>
+  <div class="prod" data-board="y"><div class="prod-name" id="name-y">YARIM</div><label>Alış</label><div class="alis" id="pyA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pyS">—</div></div>
+  <div class="prod" data-board="z"><div class="prod-name" id="name-z">ZİYNET LİRA</div><label>Alış</label><div class="alis" id="pzA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="pzS">—</div></div>
+  <div class="prod" data-board="at"><div class="prod-name" id="name-at">ATA LİRA</div><label>Alış</label><div class="alis" id="patA">—</div><div class="divider"></div><div class="satis-label">SATIŞ ●</div><div class="satis" id="patS">—</div></div>
 </section>
 
 <footer class="footer">
@@ -464,25 +735,25 @@ body {
   <div class="admin-tabs">
     <button class="admin-tab active" data-tab="margins">Marjlar</button>
     <button class="admin-tab" data-tab="sources">Fiyat Kaynakları</button>
+    <button class="admin-tab" data-tab="history">Geçmiş</button>
     <button class="admin-tab" data-tab="radar">RADAR Pro</button>
     <button class="admin-tab" data-tab="settings">Ayarlar</button>
   </div>
 
   <div class="tab-panel active" id="tab-margins">
-    <div class="admin-card">
-      <div class="row-top">
-        <div>
-          <div class="title">🕐 SİSTEM FİYAT DURUMU <span class="pill green" id="adminLive">● CANLI</span></div>
-          <div class="sub">Son güncelleme: <b id="adminTime">—</b></div>
-        </div>
-        <button class="btn-gold" id="adminRefresh2">↻ Manuel Güncelle</button>
+    <div class="bulk-bar">
+      <div class="bulk-title">
+        <div class="title">◈ Makas (Spread)</div>
+        <div class="sub">Alış ve satış marjı · toplu sıfırlama</div>
+      </div>
+      <div class="bulk-actions">
+        <button type="button" class="btn-bulk buy" id="btnClrBuy">ALIŞLARI TEMİZLE</button>
+        <button type="button" class="btn-bulk sell" id="btnClrSell">SATIŞLARI TEMİZLE</button>
+        <button type="button" class="btn-bulk all" id="btnClrAll">TÜMÜNÜ SIFIRLA</button>
       </div>
     </div>
-    <div class="admin-card">
-      <div class="title">◈ Makas (Spread) Ayarları <span class="pill gold">MARGINS</span></div>
-      <div class="sub" style="margin-bottom:8px">Alış/satış marjı. Yuvarlama: 0,50 altı aşağı · 0,50+ yukarı.</div>
-      <div class="m-grid" id="marginCards"></div>
-    </div>
+    <div class="m-grid" id="marginCards"></div>
+    <div class="sub" id="adminTime" style="margin-top:8px"></div>
   </div>
 
   <div class="tab-panel" id="tab-sources">
@@ -524,6 +795,19 @@ body {
     </div>
   </div>
 
+  <div class="tab-panel" id="tab-history">
+    <div class="admin-card">
+      <div class="row-top">
+        <div>
+          <div class="title">Fiyat geçmişi</div>
+          <div class="sub">Tabeladaki fiyat değişince kaydedilir. TV ve telefon aynı listeyi görür.</div>
+        </div>
+        <button type="button" class="btn-sm" id="btnHistRefresh">Yenile</button>
+      </div>
+      <div id="histBox" class="hist-wrap"><div class="sub">Yükleniyor…</div></div>
+    </div>
+  </div>
+
   <div class="tab-panel" id="tab-radar">
     <div class="admin-card">
       <div class="title">📊 RADAR Pro — Canlı Piyasa Terminali</div>
@@ -541,6 +825,30 @@ body {
   </div>
 
   <div class="tab-panel" id="tab-settings">
+    <div class="admin-card">
+      <div class="title">Kayan yazı <span class="pill gold">DUYURU</span></div>
+      <div class="sub" style="margin-bottom:10px">Her satır tabelanın altında ayrı bir duyuru olarak kayar. Ons satırı isteğe bağlı eklenir.</div>
+      <label class="fm-label">Rozet</label>
+      <input class="fm-name" id="tickBadge" maxlength="24" value="DUYURU">
+      <label class="fm-label">Duyuru metinleri</label>
+      <textarea id="tickLines" rows="4" placeholder="Her satıra bir duyuru"></textarea>
+      <div class="tick-row">
+        <label><input type="checkbox" id="tickOns" checked> Altın / gümüş ons fiyatını göster</label>
+        <label>Hız <input type="range" id="tickSpeed" min="12" max="90" value="40"> <span id="tickSpeedLbl">40 sn</span></label>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button type="button" class="btn-gold" id="btnSaveTick">Kayan yazıyı kaydet</button>
+        <span class="sub" id="tickMsg" style="margin:0"></span>
+      </div>
+    </div>
+    <div class="admin-card">
+      <div class="title">TV yansıtma <span class="pill green">CANLI</span></div>
+      <div class="sub" style="margin-bottom:8px">Tabelayı televizyonda açık bırakın. Bu panelden kaydettiğiniz marj, kaynak ve duyuru birkaç saniye içinde TV’ye yansır. TV’nin yönetici açmasına gerek yok.</div>
+      <div class="sub" id="tvStatus">Bağlantı bekleniyor…</div>
+      <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn-gold" id="btnPushTv">Şimdi TV’ye gönder</button>
+      </div>
+    </div>
     <div class="admin-card">
       <div class="title">⚙ Ayarlar · Yönetici Şifresi <span class="pill gold">GÜVENLİK</span></div>
       <div class="sub" style="margin-bottom:14px">Panel giriş şifresini değiştirin. Kayıt bu tarayıcıda tutulur.</div>
@@ -589,8 +897,50 @@ body {
   </div>
 </div>
 
+
+<div class="formula-modal" id="formulaModal">
+  <div class="formula-box" role="dialog" aria-modal="true">
+    <div class="formula-head">
+      <div style="display:flex;gap:10px;align-items:center">
+        <div class="m-badge" id="fmBadge">24K</div>
+        <div>
+          <div class="formula-title" id="fmTitle">24 AYAR HAS</div>
+          <div class="sub">Marj & Formül Detayları</div>
+        </div>
+      </div>
+      <button type="button" class="btn-close-admin" id="fmClose">✕</button>
+    </div>
+    <div class="formula-body" id="fmBody"></div>
+    <div class="formula-foot">
+      <button type="button" class="btn-gold" id="fmApply">TAMAMLANDI (UYGULA)</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
+<script>
+(function(){
+  var orig = window.fetch.bind(window);
+  function unwrap(raw){
+    try {
+      var u = new URL(raw, location.href);
+      if (u.origin === location.origin) return null;
+      if (u.hostname === "api.allorigins.win") return u.searchParams.get("url");
+      if (u.hostname === "corsproxy.io") return decodeURIComponent((u.search || "").replace(/^\?/, ""));
+      return u.toString();
+    } catch (e) { return null; }
+  }
+  window.fetch = function(input, init){
+    var raw = typeof input === "string" ? input : (input && input.url) || "";
+    var target = unwrap(raw);
+    var host = location.hostname || "";
+    var onGithub = host === "github.io" || host.endsWith(".github.io");
+    if (!target || onGithub) return orig(input, init);
+    return orig("/api/upstream?u=" + encodeURIComponent(target), init);
+  };
+})();
+</script>
 <script>
 (function(){
 'use strict';
@@ -749,8 +1099,16 @@ function getStoredPw() {
   return (s && String(s).length) ? String(s) : DEFAULT_PW;
 }
 
+function blankMargin(id) {
+  return { a:0, s:0, modeA:'tl', modeS:'tl', mulA: id==='ag'?1:1, mulS:1, round: id==='ag'?'half':'floor', label:'', hide:false };
+}
 function defaultMargins() {
-  const m = {}; PRODUCTS.forEach(p => { m[p.id] = { a:0, s:0 }; }); return m;
+  const m = {}; PRODUCTS.forEach(p => { m[p.id] = blankMargin(p.id); }); return m;
+}
+function cfgOf(id) {
+  const b = blankMargin(id);
+  margins[id] = Object.assign(b, margins[id] || {});
+  return margins[id];
 }
 function loadMargins() {
   try {
@@ -761,6 +1119,7 @@ function loadMargins() {
 }
 function saveMargins() {
   storageSet(MARGIN_KEY, JSON.stringify(margins));
+  if (!applyingRemote) schedulePush();
 }
 
 function defaultSources() {
@@ -794,15 +1153,202 @@ function loadSources() {
   return defaultSources();
 }
 function saveSourcesObj(obj) {
-  return storageSet(SRC_KEY, JSON.stringify(obj));
+  const ok = storageSet(SRC_KEY, JSON.stringify(obj));
+  if (!applyingRemote) schedulePush();
+  return ok;
 }
 function enabledAvgFirms() {
   const af = sources.avgFirms || {};
   return FIRM_ORDER.filter(function(id){ return !!af[id]; });
 }
 
+const TICK_KEY = 'ss_ticker_v1';
+const DEFAULT_TICKER = {
+  badge: 'DUYURU',
+  lines: ['KIYMETLİ MADEN YATIRIMLARINIZDA BİZİ TERCİH ETTİĞİNİZ İÇİN TEŞEKKÜR EDERİZ.'],
+  showOns: true,
+  speed: 40
+};
+function loadTicker() {
+  try {
+    const raw = storageGet(TICK_KEY, null);
+    if (raw) return Object.assign({}, DEFAULT_TICKER, JSON.parse(raw));
+  } catch(e) {}
+  return Object.assign({}, DEFAULT_TICKER);
+}
+function saveTickerLocal() {
+  storageSet(TICK_KEY, JSON.stringify(ticker));
+  if (!applyingRemote) schedulePush();
+}
+function escHtml(s) {
+  return String(s).replace(/[&<>"]/g, function(c) {
+    return ({ '&':'&', '<':'<', '>':'>', '"':'"' })[c];
+  });
+}
+function renderTicker() {
+  const badge = document.querySelector('.duyuru-badge');
+  if (badge) badge.textContent = ticker.badge || 'DUYURU';
+  const box = document.querySelector('.ticker');
+  if (!box) return;
+  const lines = (ticker.lines || []).map(function(s){ return String(s).trim(); }).filter(Boolean);
+  if (!lines.length) lines.push(DEFAULT_TICKER.lines[0]);
+  const chunks = lines.map(function(l){ return '<span>' + escHtml(l) + '</span>'; });
+  if (ticker.showOns !== false) {
+    chunks.push('<span>PİYASALAR: <b>ALTIN ONS:</b> <span class="ons-xau">—</span> $ | <b>GÜMÜŞ ONS:</b> <span class="ons-xag">—</span> $</span>');
+  }
+  const once = chunks.join('');
+  box.innerHTML = once + once;
+  box.style.animationDuration = Math.max(12, Number(ticker.speed) || 40) + 's';
+  if (lastOns.xau) setOns('xau', lastOns.xau);
+  if (lastOns.xag) setOns('xag', lastOns.xag);
+}
+function fillTickerForm() {
+  const b = document.getElementById('tickBadge');
+  const l = document.getElementById('tickLines');
+  const o = document.getElementById('tickOns');
+  const s = document.getElementById('tickSpeed');
+  const sl = document.getElementById('tickSpeedLbl');
+  if (b) b.value = ticker.badge || 'DUYURU';
+  if (l) l.value = (ticker.lines || []).join('\n');
+  if (o) o.checked = ticker.showOns !== false;
+  if (s) s.value = String(ticker.speed || 40);
+  if (sl) sl.textContent = (ticker.speed || 40) + ' sn';
+}
+function readTickerForm() {
+  ticker.badge = (document.getElementById('tickBadge').value || 'DUYURU').trim().slice(0, 24);
+  ticker.lines = document.getElementById('tickLines').value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean).slice(0, 8);
+  ticker.showOns = document.getElementById('tickOns').checked;
+  ticker.speed = Number(document.getElementById('tickSpeed').value) || 40;
+  saveTickerLocal();
+  renderTicker();
+}
+function boardState() {
+  return { margins: margins, sources: sources, ticker: ticker };
+}
+function setTvStatus(text, ok) {
+  const el = document.getElementById('tvStatus');
+  if (!el) return;
+  el.textContent = text;
+  el.style.color = ok ? 'var(--green)' : 'var(--muted)';
+}
+function schedulePush() {
+  if (storageGet('ss_role', '') !== 'admin') return;
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(function(){ pushBoard(); }, 450);
+}
+async function pushBoard(extra) {
+  extra = extra || {};
+  if (storageGet('ss_role', '') !== 'admin' && !extra.force) return;
+  const pin = extra.pin || getStoredPw();
+  try {
+    const res = await fetch('/api/board', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ pin: pin, newPin: extra.newPin || '', state: boardState() })
+    });
+    const data = await res.json().catch(function(){ return {}; });
+    if (res.status === 401) {
+      setTvStatus('TV şifresi uyuşmuyor. Ayarlardan şifreyi kaydedin.', false);
+      return;
+    }
+    if (!res.ok) {
+      setTvStatus('TV’ye gönderilemedi', false);
+      return;
+    }
+    if (data.rev) localRev = data.rev;
+    const t = new Date().toLocaleTimeString('tr-TR', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    setTvStatus('TV güncellendi · ' + t, true);
+  } catch(e) {
+    setTvStatus('TV bağlantısı yok', false);
+  }
+}
+function applyRemoteState(state) {
+  if (!state) return;
+  applyingRemote = true;
+  try {
+    if (state.margins && typeof state.margins === 'object') {
+      margins = Object.assign(defaultMargins(), state.margins);
+      storageSet(MARGIN_KEY, JSON.stringify(margins));
+    }
+    if (state.sources && typeof state.sources === 'object') {
+      const base = defaultSources();
+      sources = Object.assign(base, state.sources);
+      sources.avgFirms = Object.assign({}, base.avgFirms, state.sources.avgFirms || {});
+      storageSet(SRC_KEY, JSON.stringify(sources));
+    }
+    if (state.ticker && typeof state.ticker === 'object') {
+      ticker = Object.assign({}, DEFAULT_TICKER, state.ticker);
+      storageSet(TICK_KEY, JSON.stringify(ticker));
+      renderTicker();
+    }
+  } finally {
+    applyingRemote = false;
+  }
+  applyToUI();
+  if (document.getElementById('admin')?.classList.contains('open')) {
+    renderMarginCards();
+    renderSrcTable();
+    fillTickerForm();
+  }
+}
+async function pullBoard() {
+  if (document.getElementById('formulaModal')?.classList.contains('open')) return;
+  try {
+    const res = await fetch('/api/board', { cache: 'no-store' });
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || !data.rev || !data.state) {
+      setTvStatus('Henüz TV’ye gönderim yok. Yönetici kaydı ilk yansımadır.', false);
+      return;
+    }
+    if (data.rev === localRev) return;
+    applyRemoteState(data.state);
+    localRev = data.rev;
+    const when = data.updatedAt ? new Date(data.updatedAt).toLocaleTimeString('tr-TR', { hour:'2-digit', minute:'2-digit', second:'2-digit' }) : '';
+    setTvStatus('TV ile aynı · rev ' + data.rev + (when ? ' · ' + when : ''), true);
+  } catch(e) {}
+}
+function noteHistory(rows) {
+  const clean = rows.filter(function(r){ return r.buy && r.buy !== '—' && r.sell && r.sell !== '—'; });
+  if (!clean.length) return;
+  const key = clean.map(function(r){ return r.id + r.buy + r.sell; }).join('|');
+  if (key === lastHistKey) return;
+  lastHistKey = key;
+  fetch('/api/board?history=1', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ rows: clean })
+  }).catch(function(){});
+}
+async function loadHistory() {
+  const box = document.getElementById('histBox');
+  if (!box) return;
+  try {
+    const res = await fetch('/api/board?history=1', { cache: 'no-store' });
+    const data = await res.json();
+    const rows = (data && data.rows) || [];
+    if (!rows.length) {
+      box.innerHTML = '<div class="sub">Henüz fiyat değişimi yok. Tabela fiyat aldıkça burada birikir.</div>';
+      return;
+    }
+    box.innerHTML = '<table class="hist-table"><thead><tr><th>ZAMAN</th><th>ÜRÜN</th><th>ALIŞ</th><th>SATIŞ</th></tr></thead><tbody>' +
+      rows.map(function(r) {
+        const t = r.at ? new Date(r.at).toLocaleString('tr-TR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' }) : '';
+        return '<tr><td>'+escHtml(t)+'</td><td>'+escHtml(r.name || r.productId)+'</td><td class="buy">'+escHtml(r.buy)+'</td><td class="sell">'+escHtml(r.sell)+'</td></tr>';
+      }).join('') + '</tbody></table>';
+  } catch(e) {
+    box.innerHTML = '<div class="sub">Geçmiş alınamadı.</div>';
+  }
+}
+
 let margins = loadMargins();
 let sources = loadSources();
+let ticker = loadTicker();
+let applyingRemote = false;
+let localRev = 0;
+let pushTimer = null;
+let lastOns = { xau: 0, xag: 0 };
+let lastHistKey = '';
 let prev = {};
 let busy = false;
 let timer = null;
@@ -814,11 +1360,47 @@ let lastUpdateStr = '—';
 let logoClicks = 0;
 let logoTimer = null;
 
+function applyRoundMode(v, mode, silver) {
+  const n = Number(v);
+  if (!isFinite(n) || n <= 0) return n;
+  if (silver) {
+    if (mode === 'none') return Math.round(n * 100) / 100;
+    if (mode === 'floor1') return Math.floor(n);
+    if (mode === 'ceil1') return Math.ceil(n);
+    if (mode === 'near50') return Math.round(n * 2) / 2;
+    if (mode === 'floor50') return Math.floor(n * 2) / 2;
+    if (mode === 'ceil50') return Math.ceil(n * 2) / 2;
+    if (mode === 'near25') return Math.round(n * 4) / 4;
+    const i = Math.floor(n), d = Number((n - i).toFixed(6));
+    return d < 0.5 ? i : i + 1;
+  }
+  if (mode === 'none') return Math.round(n * 100) / 100;
+  if (mode === 'ceil') return Math.ceil(n);
+  if (mode === 'nearest') return Math.round(n);
+  if (mode === 'half') { const i = Math.floor(n); const d = Number((n - i).toFixed(6)); return d < 0.5 ? i : i + 1; }
+  return Math.floor(n);
+}
+function netSide(base, cfg, side, silver) {
+  const mode = side === 'a' ? cfg.modeA : cfg.modeS;
+  const marj = Number(side === 'a' ? cfg.a : cfg.s) || 0;
+  const mul = Number(side === 'a' ? cfg.mulA : cfg.mulS) || 1;
+  let v = Number(base) || 0;
+  if (!(v > 0)) return 0;
+  v = mode === 'milyem' ? v * mul : v + marj;
+  return applyRoundMode(v, cfg.round, silver);
+}
+function fmtSmart(v, mode, silver) {
+  const n = Number(v);
+  if (!isFinite(n) || n <= 0) return '—';
+  const ints = silver ? ['half','floor1','ceil1'] : ['floor','ceil','nearest','half'];
+  if (ints.indexOf(mode) !== -1) return Math.round(n).toLocaleString('tr-TR');
+  return n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
 function fmt(v, coin) {
   const n = Number(v);
   if (!isFinite(n) || n <= 0) return '—';
-  if (coin) return roundHalf(n).toLocaleString('tr-TR');
-  return roundHalf(n).toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  if (coin) return Math.round(n).toLocaleString('tr-TR');
+  return n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 function fmtKanal(v, coin) {
   const n = Number(v);
@@ -877,27 +1459,47 @@ function applyToUI() {
     const baseS = pickBase(p.id, p.rawS);
     combined[p.rawA] = baseA;
     combined[p.rawS] = baseS;
-    const a = baseA + (margins[p.id]?.a || 0);
-    const s = baseS + (margins[p.id]?.s || 0);
+    const cfg = cfgOf(p.id);
+    const silver = p.id === 'ag';
+    const a = netSide(baseA, cfg, 'a', silver);
+    const s = netSide(baseS, cfg, 's', silver);
+    const board = document.querySelector('[data-board="'+p.id+'"]');
+    if (board) board.classList.toggle('is-hidden', !!cfg.hide);
+    const nameEl = document.getElementById('name-'+p.id);
+    if (nameEl && cfg.label) {
+      if (p.id === 'ag') nameEl.innerHTML = '<span class="dot"></span>' + cfg.label;
+      else nameEl.textContent = cfg.label;
+    }
 
-    if (p.id === '24') { setEl('p24a', a, false); setEl('p24s', s, false); }
-    else if (p.id === '22') { setEl('p22a', a, false); setEl('p22s', s, false); }
-    else if (p.id === 'au') { setEl('pauA', a, false); setEl('pauS', s, false); }
-    else if (p.id === 'c') { setEl('pcA', a, true); setEl('pcS', s, true); }
-    else if (p.id === 'y') { setEl('pyA', a, true); setEl('pyS', s, true); }
-    else if (p.id === 'z') { setEl('pzA', a, true); setEl('pzS', s, true); }
-    else if (p.id === 'at') { setEl('patA', a, true); setEl('patS', s, true); }
-    else if (p.id === 'ag') {
+    const txtA = fmtSmart(a, cfg.round, silver);
+    const txtS = fmtSmart(s, cfg.round, silver);
+    const map = {24:['p24a','p24s'],22:['p22a','p22s'],au:['pauA','pauS'],c:['pcA','pcS'],y:['pyA','pyS'],z:['pzA','pzS'],at:['patA','patS']};
+    if (p.id === 'ag') {
       const elA = document.getElementById('agA');
       const elS = document.getElementById('agS');
-      const ta = fmt(a, false) + ' TL';
-      const ts = fmt(s, false) + ' TL';
-      if (elA) { elA.textContent = ta; elA.style.transition='color .2s'; }
-      if (elS) { elS.textContent = ts; elS.style.transition='color .2s'; }
+      if (elA) elA.textContent = txtA + ' TL';
+      if (elS) elS.textContent = txtS + ' TL';
+    } else if (map[p.id]) {
+      const e1 = document.getElementById(map[p.id][0]);
+      const e2 = document.getElementById(map[p.id][1]);
+      if (e1) e1.textContent = txtA;
+      if (e2) e2.textContent = txtS;
     }
   });
   lastRaw = combined;
-  if (document.getElementById('admin')?.classList.contains('open')) renderMarginCards();
+  noteHistory(PRODUCTS.map(function(p) {
+    const cfg = cfgOf(p.id);
+    const silver = p.id === 'ag';
+    return {
+      id: p.id,
+      name: cfg.label || p.name,
+      buy: fmtSmart(netSide(combined[p.rawA] || 0, cfg, 'a', silver), cfg.round, silver),
+      sell: fmtSmart(netSide(combined[p.rawS] || 0, cfg, 's', silver), cfg.round, silver)
+    };
+  }));
+  const adminOpen = document.getElementById('admin')?.classList.contains('open');
+  const modalOpen = document.getElementById('formulaModal')?.classList.contains('open');
+  if (adminOpen && !modalOpen) renderMarginCards();
 }
 
 function parseGunes(data) {
@@ -1119,11 +1721,8 @@ function setOns(kind, val) {
   const n = Number(val);
   if (!isFinite(n) || n <= 0) return;
   const t = n.toFixed(2);
-  if (kind === 'xau') {
-    ['xauOns','xauOns2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = t; });
-  } else {
-    ['xagOns','xagOns2'].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = t; });
-  }
+  if (kind === 'xau') lastOns.xau = n; else lastOns.xag = n;
+  document.querySelectorAll(kind === 'xau' ? '.ons-xau' : '.ons-xag').forEach(function(el){ el.textContent = t; });
 }
 
 async function fetchOns() {
@@ -1247,10 +1846,13 @@ function submitPassword(e) {
 }
 
 function openAdmin() {
+  try { storageSet('ss_role', 'admin'); } catch(e) {}
   document.getElementById('admin').classList.add('open');
   document.getElementById('adminTime').textContent = lastUpdateStr;
   renderMarginCards();
   renderSrcTable();
+  fillTickerForm();
+  pullBoard();
   toast('Yönetici paneli açıldı');
 }
 function closeAdmin() {
@@ -1289,6 +1891,8 @@ function changePassword() {
     setPwMsg('Kayıt doğrulanamadı', false);
     return;
   }
+  try { storageSet('ss_role', 'admin'); } catch(e) {}
+  pushBoard({ pin: cur, newPin: a, force: true });
   if (curEl) curEl.value = '';
   if (aEl) aEl.value = '';
   if (bEl) bEl.value = '';
@@ -1301,6 +1905,8 @@ function resetPasswordDefault() {
   if (!cur) { setPwMsg('Sıfırlamak için mevcut şifreyi girin', false); return; }
   if (cur !== getStoredPw()) { setPwMsg('Mevcut şifre hatalı', false); return; }
   storageDel(PW_KEY);
+  try { storageSet('ss_role', 'admin'); } catch(e) {}
+  pushBoard({ pin: cur, newPin: 'sarraf55', force: true });
   document.getElementById('curPw').value = '';
   document.getElementById('newPw1').value = '';
   document.getElementById('newPw2').value = '';
@@ -1309,52 +1915,204 @@ function resetPasswordDefault() {
 }
 
 function adjMargin(id, field, delta) {
-  margins[id] = margins[id] || { a:0, s:0 };
-  margins[id][field] = Math.round((margins[id][field] + delta) * 100) / 100;
+  const c = cfgOf(id);
+  c[field] = Math.round(((Number(c[field]) || 0) + delta) * 100) / 100;
   saveMargins();
   applyToUI();
-  renderMarginCards();
 }
 function resetMargin(id, field) {
-  margins[id] = margins[id] || { a:0, s:0 };
-  margins[id][field] = 0;
+  cfgOf(id)[field] = 0;
   saveMargins();
   applyToUI();
-  renderMarginCards();
 }
-
+function clearMargins(which) {
+  PRODUCTS.forEach(function(p) {
+    const c = cfgOf(p.id);
+    if (which === 'a' || which === 'all') { c.a = 0; c.mulA = 1; c.modeA = 'tl'; }
+    if (which === 's' || which === 'all') { c.s = 0; c.mulS = 1; c.modeS = 'tl'; }
+  });
+  saveMargins();
+  applyToUI();
+  toast(which === 'all' ? 'Tüm marjlar sıfırlandı' : (which === 'a' ? 'Alış marjları temizlendi' : 'Satış marjları temizlendi'));
+}
+function roundBadge(p, cfg) {
+  const m = cfg.round;
+  if (p.id === 'ag') {
+    const map = { half:'0,50 EŞİK', floor1:'AŞAĞI 1 TL', ceil1:'YUKARI 1 TL', near50:'50 KR', floor50:'TABAN 50', ceil50:'TAVAN 50', near25:'25 KR', none:'' };
+    return map[m] || '';
+  }
+  const map = { floor:'TABAN TL', ceil:'TAVAN TL', nearest:'EN YAKIN TL', half:'0,50', none:'' };
+  return map[m] || '';
+}
+function activeMargin(cfg) {
+  return (Number(cfg.a)||0) !== 0 || (Number(cfg.s)||0) !== 0 || cfg.modeA === 'milyem' || cfg.modeS === 'milyem';
+}
+let formulaPid = null;
+function previewNet(base, mode, marj, mul, round, silver) {
+  const fake = { modeA:mode, modeS:mode, a:marj, s:marj, mulA:mul, mulS:mul, round:round };
+  return netSide(base, fake, 'a', silver);
+}
 function renderMarginCards() {
   const el = document.getElementById('marginCards');
   if (!el) return;
   const raw = lastRaw || {};
-  el.innerHTML = PRODUCTS.map(p => {
+  el.innerHTML = PRODUCTS.map(function(p) {
+    const cfg = cfgOf(p.id);
     const baseA = raw[p.rawA] || 0, baseS = raw[p.rawS] || 0;
-    const ma = margins[p.id]?.a || 0, ms = margins[p.id]?.s || 0;
+    const silver = p.id === 'ag';
+    const a = netSide(baseA, cfg, 'a', silver);
+    const s = netSide(baseS, cfg, 's', silver);
+    const ma = Number(cfg.a)||0, ms = Number(cfg.s)||0;
     const maCls = ma > 0 ? 'pos' : ma < 0 ? 'neg' : '';
     const msCls = ms > 0 ? 'pos' : ms < 0 ? 'neg' : '';
-    return '<div class="m-card"><div class="m-head"><div class="m-badge">'+p.short+'</div><span class="m-name">'+p.name+'</span></div>'+
-      '<div class="m-kanal">Kanal: '+fmtKanal(baseA,p.coin)+' / '+fmtKanal(baseS,p.coin)+'</div>'+
-      '<div class="m-prices"><div><label>TABELA ALIŞ</label><div class="pa">'+fmt(baseA+ma,p.coin)+' TL</div></div>'+
-      '<div><label>TABELA SATIŞ</label><div class="ps">'+fmt(baseS+ms,p.coin)+' TL</div></div></div>'+
-      '<div class="m-ctrl"><div class="side"><span class="lbl">AL:</span>'+
-      '<button type="button" data-adj="'+p.id+',a,-1">−</button><span class="val '+maCls+'">'+(ma>=0?'+':'')+ma+' TL</span>'+
-      '<button type="button" data-adj="'+p.id+',a,1">+</button><button type="button" data-rst="'+p.id+',a">↺</button></div>'+
-      '<div class="side"><span class="lbl">SAT:</span>'+
-      '<button type="button" data-adj="'+p.id+',s,-1">−</button><span class="val '+msCls+'">'+(ms>=0?'+':'')+ms+' TL</span>'+
-      '<button type="button" data-adj="'+p.id+',s,1">+</button><button type="button" data-rst="'+p.id+',s">↺</button></div></div></div>';
+    const rb = roundBadge(p, cfg);
+    const pills = (activeMargin(cfg) ? '<span class="m-pill">AKTİF MARJ</span>' : '') + (rb ? '<span class="m-pill warn">'+rb+'</span>' : '');
+    const shownA = cfg.modeA === 'milyem' ? ('×' + cfg.mulA) : ((ma>=0?'+':'')+ma+' TL');
+    const shownS = cfg.modeS === 'milyem' ? ('×' + cfg.mulS) : ((ms>=0?'+':'')+ms+' TL');
+    const title = cfg.label || p.name;
+    return '<div class="m-card"><div class="m-top"><div class="m-id"><div class="m-badge">'+p.short+'</div><div><div class="m-name">'+title+'</div><div class="m-kanal">Kanal Fiyatı: '+fmtKanal(baseS || baseA, false)+'</div><div class="m-pills">'+pills+'</div></div></div>'+
+      '<div class="m-tools"><button type="button" data-rstb="'+p.id+'" title="Sıfırla">↺</button><button type="button" data-edit="'+p.id+'" title="Formül">✎</button>'+
+      '<button type="button" class="'+(cfg.hide?'on':'')+'" data-hide="'+p.id+'" title="Tabelada gizle">◉</button></div></div>'+
+      '<div class="m-prices"><div><label>TABELA ALIŞ</label><div class="pa">'+fmtSmart(a,cfg.round,silver)+' TL</div></div><div><label>TABELA SATIŞ</label><div class="ps">'+fmtSmart(s,cfg.round,silver)+' TL</div></div></div>'+
+      '<div class="m-ctrl"><div class="side"><span class="lbl">AL:</span><button type="button" data-adj="'+p.id+',a,-1">−</button><span class="val '+maCls+'">'+shownA+'</span><button type="button" data-adj="'+p.id+',a,1">+</button></div>'+
+      '<div class="side"><span class="lbl">SAT:</span><button type="button" data-adj="'+p.id+',s,-1">−</button><span class="val '+msCls+'">'+shownS+'</span><button type="button" data-adj="'+p.id+',s,1">+</button></div></div></div>';
   }).join('');
-  el.querySelectorAll('[data-adj]').forEach(btn => {
+  el.querySelectorAll('[data-adj]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       const parts = btn.getAttribute('data-adj').split(',');
-      adjMargin(parts[0], parts[1], Number(parts[2]));
+      const c = cfgOf(parts[0]);
+      if ((parts[1]==='a' && c.modeA==='milyem') || (parts[1]==='s' && c.modeS==='milyem')) {
+        const key = parts[1]==='a' ? 'mulA' : 'mulS';
+        c[key] = Math.round(((Number(c[key])||1) + Number(parts[2]) * 0.001) * 1000) / 1000;
+        saveMargins(); applyToUI();
+      } else adjMargin(parts[0], parts[1], Number(parts[2]));
     });
   });
-  el.querySelectorAll('[data-rst]').forEach(btn => {
+  el.querySelectorAll('[data-rstb]').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      const parts = btn.getAttribute('data-rst').split(',');
-      resetMargin(parts[0], parts[1]);
+      const id = btn.getAttribute('data-rstb');
+      const c = cfgOf(id);
+      c.a = 0; c.s = 0; c.modeA = 'tl'; c.modeS = 'tl'; c.mulA = 1; c.mulS = 1;
+      saveMargins(); applyToUI();
     });
   });
+  el.querySelectorAll('[data-hide]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const id = btn.getAttribute('data-hide');
+      cfgOf(id).hide = !cfgOf(id).hide;
+      saveMargins(); applyToUI();
+    });
+  });
+  el.querySelectorAll('[data-edit]').forEach(function(btn) {
+    btn.addEventListener('click', function() { openFormula(btn.getAttribute('data-edit')); });
+  });
+}
+
+function roundChoices(silver, base, round) {
+  if (silver) {
+    return [
+      ['none','YUVARLAMA YOK','Ham küsürat'],
+      ['half','0,50 EŞİĞİ (1 TL)','<0,50 aşağı, ≥0,50 yukarı'],
+      ['floor1','AŞAĞI 1 TL','Taban tam lira'],
+      ['ceil1','YUKARI 1 TL','Tavan tam lira'],
+      ['near50','EN YAKIN 50 KR','0,50 TL kademesi'],
+      ['floor50','AŞAĞI 50 KR','0,50 TL taban'],
+      ['ceil50','YUKARI 50 KR','0,50 TL tavan'],
+      ['near25','EN YAKIN 25 KR','0,25 TL kademesi']
+    ];
+  }
+  return [
+    ['none','YUVARLAMA YOK','Küsüratlı kalır'],
+    ['floor','AŞAĞI YUVARLA','Taban yap (Floor)'],
+    ['ceil','YUKARI YUVARLA','Tavan yap (Ceil)'],
+    ['nearest','EN YAKINA YUVARLA','En yakın tam sayı']
+  ];
+}
+function openFormula(pid) {
+  formulaPid = pid;
+  const p = PRODUCTS.find(function(x){ return x.id === pid; });
+  const cfg = cfgOf(pid);
+  const raw = lastRaw || {};
+  const baseA = raw[p.rawA] || 0, baseS = raw[p.rawS] || 0;
+  const silver = pid === 'ag';
+  document.getElementById('fmBadge').textContent = p.short;
+  document.getElementById('fmTitle').textContent = cfg.label || p.name;
+  const choices = roundChoices(silver, baseS, cfg.round);
+  const rounds = '<div class="rounds'+(silver?' silver':'')+'">'+choices.map(function(c) {
+    const sample = applyRoundMode(silver ? (baseS + (Number(cfg.s)||0)) : (baseS + (Number(cfg.s)||0)), c[0], silver);
+    return '<button type="button" class="round-opt'+(cfg.round===c[0]?' on':'')+'" data-round="'+c[0]+'"><div class="rt">'+c[1]+'</div><div class="rd">'+c[2]+'</div><div class="rp">'+fmtSmart(sample, c[0], silver)+' TL</div></button>';
+  }).join('')+'</div>';
+  const netA = netSide(baseA, cfg, 'a', silver);
+  const netS = netSide(baseS, cfg, 's', silver);
+  document.getElementById('fmBody').innerHTML =
+    '<div class="fm-label">ÜRÜNÜN TABELADAKİ İSMİ</div>'+
+    '<input class="fm-name" id="fmLabel" value="'+String(cfg.label || p.name).replace(/"/g,'"')+'">'+
+    '<div class="fm-kanal"><div><div class="fm-label" style="margin:0">KANAL ALIŞ / HAS</div><b>'+fmtKanal(baseA,false)+'</b></div><div><div class="fm-label" style="margin:0">KANAL SATIŞ / HAS</div><b>'+fmtKanal(baseS,false)+'</b></div></div>'+
+    '<div class="fm-plans">'+
+      planHtml('a','ALIŞ PLANI','NET ALIŞ FİYATI','buy',cfg.modeA,cfg.a,cfg.mulA,netA,baseA,silver,cfg.round)+
+      planHtml('s','SATIŞ PLANI','NET SATIŞ FİYATI','sell',cfg.modeS,cfg.s,cfg.mulS,netS,baseS,silver,cfg.round)+
+    '</div>'+
+    '<div class="round-box"><div class="row"><div><div class="formula-title" style="font-size:13px">'+(silver?'GÜMÜŞ KÜSÜRAT YUVARLAMA':'KÜSÜRAT YUVARLAMA')+'</div><div class="sub">'+(silver?'Gümüş fiyatını tam lira veya 50 Kr / 25 Kr kademelerine yuvarlar.':'Tabelada fiyat kur küsüratlarını aşağı/yukarı akıllı yuvarlar.')+'</div></div><span class="pill-on">YUVARLAMA AKTİF</span></div>'+rounds+'</div>';
+  document.getElementById('formulaModal').classList.add('open');
+  bindFormula();
+}
+function planHtml(side, title, netLabel, tone, mode, marj, mul, net, base, silver, round) {
+  const tlOn = mode !== 'milyem';
+  const milyemBlock = silver ? '' :
+    '<div class="seg"><button type="button" data-mode="'+side+',tl" class="'+(tlOn?'on':'')+'">SABİT TL FARK</button><button type="button" data-mode="'+side+',milyem" class="'+(!tlOn?'on':'')+'">MİLYEM (HAS)</button></div>'+
+    (tlOn
+      ? '<div class="fm-label">'+ (side==='a'?'ALIŞ':'SATIŞ') +' MARJI (TL)</div><div class="stepper"><button type="button" data-step="'+side+',-10">-10</button><button type="button" data-step="'+side+',-1">-1</button><input id="fmMarj'+side+'" value="'+marj+'"><button type="button" data-step="'+side+',1">+1</button><button type="button" data-step="'+side+',10">+10</button></div>'
+      : '<div class="fm-hint">MİLYEM ÇARPANI '+(side==='a'?'Has Alış':'Has Satış')+'</div><div class="stepper"><input id="fmMul'+side+'" value="'+mul+'" placeholder="'+(side==='a'?'1.005':'1.65')+'"></div><div class="fm-hint">'+(side==='a'?'Örn: 1.005 × Has Alış':'Örn: 1.65 × Has Satış')+'</div>');
+  const silverBlock = silver
+    ? '<div class="fm-label">'+(side==='a'?'ALIŞ':'SATIŞ')+' MARJI (TL)</div><div class="stepper"><button type="button" data-step="'+side+',-10">-10</button><button type="button" data-step="'+side+',-1">-1</button><input id="fmMarj'+side+'" value="'+marj+'"><button type="button" data-step="'+side+',1">+1</button><button type="button" data-step="'+side+',10">+10</button></div>'
+    : milyemBlock;
+  return '<div class="fm-plan"><div class="net">'+netLabel+'<b class="'+tone+'">'+fmtSmart(net, round, silver)+' TL</b></div><h4>'+title+'</h4><div class="sub">Müşteri '+(side==='a'?'alış':'satış')+' fiyatı</div>'+silverBlock+'</div>';
+}
+function readFormulaIntoCfg() {
+  if (!formulaPid) return;
+  const c = cfgOf(formulaPid);
+  const label = document.getElementById('fmLabel');
+  if (label) c.label = label.value.trim();
+  ['a','s'].forEach(function(side) {
+    const mi = document.getElementById('fmMarj'+side);
+    const mu = document.getElementById('fmMul'+side);
+    if (mi && mi.value !== '') c[side] = Number(String(mi.value).replace(',','.')) || 0;
+    if (mu && mu.value !== '') c[side==='a'?'mulA':'mulS'] = Number(String(mu.value).replace(',','.')) || 1;
+  });
+}
+function bindFormula() {
+  const body = document.getElementById('fmBody');
+  body.querySelectorAll('[data-mode]').forEach(function(btn) {
+    btn.onclick = function() {
+      readFormulaIntoCfg();
+      const parts = btn.getAttribute('data-mode').split(',');
+      cfgOf(formulaPid)[parts[0]==='a'?'modeA':'modeS'] = parts[1];
+      openFormula(formulaPid);
+    };
+  });
+  body.querySelectorAll('[data-step]').forEach(function(btn) {
+    btn.onclick = function() {
+      readFormulaIntoCfg();
+      const parts = btn.getAttribute('data-step').split(',');
+      const c = cfgOf(formulaPid);
+      c[parts[0]] = Math.round(((Number(c[parts[0]])||0) + Number(parts[1])) * 100) / 100;
+      openFormula(formulaPid);
+    };
+  });
+  body.querySelectorAll('[data-round]').forEach(function(btn) {
+    btn.onclick = function() {
+      readFormulaIntoCfg();
+      cfgOf(formulaPid).round = btn.getAttribute('data-round');
+      openFormula(formulaPid);
+    };
+  });
+}
+function closeFormula(apply) {
+  if (apply) readFormulaIntoCfg();
+  saveMargins();
+  document.getElementById('formulaModal').classList.remove('open');
+  formulaPid = null;
+  applyToUI();
 }
 
 function firmLogoImg(s) {
@@ -1480,6 +2238,8 @@ function switchTab(name) {
   if (name === 'radar') {
     ensureRadarLoaded();
   }
+  if (name === 'history') loadHistory();
+  if (name === 'settings') fillTickerForm();
 }
 
 // Bindings
@@ -1505,8 +2265,14 @@ document.getElementById('pwInput').addEventListener('keydown', function(ev) {
 
 document.getElementById('btnCloseAdmin').addEventListener('click', closeAdmin);
 document.getElementById('btnRefresh').addEventListener('click', function(){ load(true); });
-document.getElementById('adminRefresh').addEventListener('click', function(){ load(true); });
-document.getElementById('adminRefresh2').addEventListener('click', function(){ load(true); });
+var adminRefreshEl = document.getElementById('adminRefresh');
+if (adminRefreshEl) adminRefreshEl.addEventListener('click', function(){ load(true); });
+document.getElementById('btnClrBuy').onclick = function(){ clearMargins('a'); };
+document.getElementById('btnClrSell').onclick = function(){ clearMargins('s'); };
+document.getElementById('btnClrAll').onclick = function(){ clearMargins('all'); };
+document.getElementById('fmClose').onclick = function(){ closeFormula(false); };
+document.getElementById('fmApply').onclick = function(){ closeFormula(true); };
+document.getElementById('formulaModal').addEventListener('click', function(e){ if (e.target.id === 'formulaModal') closeFormula(false); });
 
 document.getElementById('btnSavePw').addEventListener('click', function(e){ e.preventDefault(); changePassword(); });
 document.getElementById('btnResetPw').addEventListener('click', function(e){ e.preventDefault(); resetPasswordDefault(); });
@@ -1566,12 +2332,31 @@ document.getElementById('radarFileInput').addEventListener('change', function(ev
 });
 
 tick();
+renderTicker();
 setInterval(tick, 1000);
 setInterval(function(){ fetchOns().catch(function(){}); }, 30000);
+setInterval(function(){ pullBoard(); }, 4000);
 document.addEventListener('visibilitychange', function() {
-  if (document.visibilityState === 'visible') load(false);
+  if (document.visibilityState === 'visible') { load(false); pullBoard(); }
 });
 load(false);
+pullBoard();
+
+document.getElementById('btnSaveTick').addEventListener('click', function() {
+  readTickerForm();
+  const msg = document.getElementById('tickMsg');
+  if (msg) { msg.textContent = 'Kaydedildi'; msg.style.color = 'var(--green)'; }
+  toast('Kayan yazı güncellendi');
+});
+document.getElementById('tickSpeed').addEventListener('input', function() {
+  const sl = document.getElementById('tickSpeedLbl');
+  if (sl) sl.textContent = this.value + ' sn';
+});
+document.getElementById('btnPushTv').addEventListener('click', function() {
+  try { storageSet('ss_role', 'admin'); } catch(e) {}
+  pushBoard({ force: true });
+});
+document.getElementById('btnHistRefresh').addEventListener('click', loadHistory);
 
 })();
 </script>
